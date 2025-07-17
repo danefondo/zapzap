@@ -4,28 +4,13 @@ import { initDB } from "../db.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-/* default instance (env key) */
-const HG_DEFAULT = axios.create({
+const HG = axios.create({
     baseURL: "https://api.heygen.com",
     headers: { "x-api-key": process.env.HEYGEN_API_KEY },
     timeout: 20_000,
 });
 
-/**
- * syncTranslations(cutoffUnix = 0, apiKey = '')
- *  cutoffUnix … ignore videos older than this (0 = no cut‑off)
- *  apiKey     … optional HeyGen key from the client
- */
-export async function syncTranslations(cutoffUnix = 0, apiKey = "") {
-    /* if a client key is provided use it; else reuse the default instance */
-    const HG = apiKey
-        ? axios.create({
-              baseURL: "https://api.heygen.com",
-              headers: { "x-api-key": apiKey },
-              timeout: 20_000,
-          })
-        : HG_DEFAULT;
-
+export async function syncTranslations(cutoffUnix = 0) {
     const { videos } = await initDB();
     let nextToken = null;
     let imported = 0;

@@ -65,20 +65,15 @@
         </style>
     </head>
     <body>
-
         <header>
-            <label>HeyGen API Key:</label>
-            <input id="hgKey" type="password" size="36" placeholder="pk_live_…" />
-            <button id="saveKeyBtn">Save Key</button>
-
             <label for="cutoffInput">Cut‑off:</label>
             <input type="date" id="cutoffInput" />
-
-            <button id="syncBtn">🔄 Sync</button>
-            <button id="exportBtn">⚙️ Queue</button>
-            <button id="statusBtn">🔍 Status</button>
+            <button id="syncBtn">🔄 Sync Translations</button>
+            <button id="exportBtn">⚙️ Queue Everything</button>
+            <button id="statusBtn">🔍 Refresh Status</button>
             <button id="logsBtn">📄 Logs</button>
 
+            <!-- spinner hidden by default -->
             <span id="refreshIcon" style="display: none">⟳</span>
             <span id="counter"></span>
         </header>

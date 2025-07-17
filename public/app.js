@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
     /* ---------- 15‑second wall‑clock auto‑refresh ---------- */
-    const POLL_MS = 5_000;
+    const POLL_MS = 15_000;
     let next = Date.now() + POLL_MS;
 
     async function pollLoop() {

@@ -8,9 +8,7 @@ const router = express.Router();
 
 router.post("/sync", async (req, res) => {
     const cutoff = Number(req.body.cutoff) || 0;
-    /* writeLog("info", "Manual sync", { imported, cutoff }); */
-    const key = req.get("X-HeyGen-Key") || ""; // read custom header
-    const imported = await syncTranslations(cutoff, key);
+    const imported = await syncTranslations(cutoff);
     res.json({ ok: true, imported });
 });
 

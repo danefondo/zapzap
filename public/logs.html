@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Logs</title>
+        <style>
+            body {
+                display: flex;
+                margin: 0;
+                font: 14px system-ui, sans-serif;
+                height: 100vh;
+            }
+            #list {
+                width: 280px;
+                overflow-y: auto;
+                border-right: 1px solid #ddd;
+            }
+            #detail {
+                flex: 1;
+                padding: 1rem;
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+            li {
+                cursor: pointer;
+                padding: 0.4rem 0.6rem;
+                border-bottom: 1px solid #eee;
+            }
+            li:hover {
+                background: #f2faff;
+            }
+            .type-info {
+                color: teal;
+            }
+            .type-warn {
+                color: goldenrod;
+            }
+            .type-error {
+                color: crimson;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="list"></ul>
+        <pre id="detail">Select a log…</pre>
+        <script>
+            const L = document.getElementById("list"),
+                D = document.getElementById("detail");
+
+            async function loadPage(page = 1) {
+                const r = await fetch(`/api/logs?page=${page}&limit=100`);
+                const { items } = await r.json();
+                items.forEach((it) => {
+                    const li = document.createElement("li");
+                    li.className = "type-" + it.type;
+                    li.textContent = `${new Date(it.ts).toLocaleString()}  –  ${it.message}`;
+                    li.onclick = () => show(it._id);
+                    L.appendChild(li);
+                });
+            }
+            async function show(id) {
+                const r = await fetch(`/api/logs/${id}`);
+                if (!r.ok) return;
+                const j = await r.json();
+                D.textContent = JSON.stringify(j, null, 2);
+            }
+            loadPage();
+        </script>
+    </body>
+</html>

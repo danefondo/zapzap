@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>HeyGen Sync</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <style>
+            body {
+                font: 15px/1.4 system-ui, sans-serif;
+                margin: 0;
+                padding: 1rem 1.5rem;
+            }
+            header {
+                display: flex;
+                gap: 0.75rem;
+                align-items: center;
+                margin-bottom: 1rem;
+                flex-wrap: wrap;
+            }
+            header button {
+                padding: 0.35rem 0.8rem;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th,
+            td {
+                padding: 0.45rem 0.3rem;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background: #fafafa;
+                position: sticky;
+                top: 0;
+                text-align: left;
+            }
+            tr:nth-child(even) {
+                background: #f9f9f9;
+            }
+            a {
+                color: royalblue;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            #counter {
+                margin-left: auto;
+                opacity: 0.6;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+            #refreshIcon {
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <label>HeyGen API Key:</label>
+            <input id="hgKey" type="password" size="36" placeholder="pk_live_…" />
+            <button id="saveKeyBtn">Save Key</button>
+
+            <label for="cutoffInput">Cut‑off:</label>
+            <input type="date" id="cutoffInput" />
+
+            <button id="syncBtn">🔄 Sync</button>
+            <button id="exportBtn">⚙️ Queue</button>
+            <button id="statusBtn">🔍 Status</button>
+            <button id="logsBtn">📄 Logs</button>
+
+            <span id="refreshIcon" style="display: none">⟳</span>
+            <span id="counter"></span>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Created</th>
+                    <th>Title</th>
+                    <th>Status (CC / DBX)</th>
+                    <th>Language</th>
+                    <th>HeyGen</th>
+                    <th>CC URL</th>
+                    <th>Dropbox</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+        <script src="app.js"></script>
+    </body>
+</html>

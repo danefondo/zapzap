@@ -1,0 +1,21 @@
+{
+    "name": "heygen-sync-app",
+    "version": "2.2.0",
+    "type": "module",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
+    },
+    "dependencies": {
+        "axios": "^1.7.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.0",
+        "express": "^4.19.2",
+        "mongodb": "^6.6.0",
+        "node-fetch": "^3.3.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}
